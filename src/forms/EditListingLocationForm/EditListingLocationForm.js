@@ -46,6 +46,15 @@ export const EditListingLocationFormComponent = props => (
       const optionalText = intl.formatMessage({
         id: 'EditListingLocationForm.optionalText',
       });
+      
+      const zipcodeMessage = intl.formatMessage(
+        { id: 'EditListingLocationForm.zipcode' },
+        { optionalText: optionalText }
+      );
+      const zipcodePlaceholderMessage = intl.formatMessage({
+        id: 'EditListingLocationForm.zipcodePlaceholder',
+      });
+      
 
       const buildingMessage = intl.formatMessage(
         { id: 'EditListingLocationForm.building' },
@@ -94,6 +103,15 @@ export const EditListingLocationFormComponent = props => (
               autocompleteSearchRequired(addressRequiredMessage),
               autocompletePlaceSelected(addressNotRecognizedMessage)
             )}
+          />
+            
+          <FieldTextInput
+            className={css.building}
+            type="text"
+            name="zipcode"
+            id="zipcode"
+            label={zipcodeMessage}
+            placeholder={zipcodePlaceholderMessage}
           />
 
           <FieldTextInput

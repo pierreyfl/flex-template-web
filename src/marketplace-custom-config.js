@@ -4,37 +4,41 @@
 
 export const amenities = [
   {
-    key: 'towels',
-    label: 'Towels',
+    key: 'spanish',
+    label: 'Spanish',
   },
   {
-    key: 'bathroom',
-    label: 'Bathroom',
+    key: 'catalan',
+    label: 'Catalan',
   },
   {
-    key: 'swimming_pool',
-    label: 'Swimming pool',
+    key: 'english',
+    label: 'English',
   },
   {
-    key: 'own_drinks',
-    label: 'Own drinks allowed',
+    key: 'french',
+    label: 'French',
   },
   {
-    key: 'jacuzzi',
-    label: 'Jacuzzi',
+    key: 'german',
+    label: 'German',
   },
   {
-    key: 'audiovisual_entertainment',
-    label: 'Audiovisual entertainment',
+    key: 'italian',
+    label: 'Italian',
   },
   {
-    key: 'barbeque',
-    label: 'Barbeque',
+    key: 'dustch',
+    label: 'Dustch',
   },
   {
-    key: 'own_food_allowed',
-    label: 'Own food allowed',
+    key: 'euskera',
+    label: 'Euskera',
   },
+  {
+    key: 'portuguese',
+    label: 'Portuguese',
+  }
 ];
 
 export const categories = [

@@ -4,10 +4,12 @@ import { compose } from 'redux';
 import { Form as FinalForm } from 'react-final-form';
 import { intlShape, injectIntl, FormattedMessage } from 'react-intl';
 import classNames from 'classnames';
+import * as validators from '../../util/validators';
 import { propTypes } from '../../util/types';
 import { maxLength, required, composeValidators } from '../../util/validators';
-import { Form, Button, FieldTextInput } from '../../components';
+import { Form, Button, FieldTextInput, FieldBirthdayInput} from '../../components';
 import CustomCategorySelectFieldMaybe from './CustomCategorySelectFieldMaybe';
+import * as normalizePhoneNumberUS from './normalizePhoneNumberUS';
 
 import css from './EditListingDescriptionForm.css';
 
@@ -21,6 +23,7 @@ const EditListingDescriptionFormComponent = props => (
         categories,
         className,
         disabled,
+        values,
         handleSubmit,
         intl,
         invalid,
@@ -44,6 +47,44 @@ const EditListingDescriptionFormComponent = props => (
           maxLength: TITLE_MAX_LENGTH,
         }
       );
+      
+      const birthdayLabel = intl.formatMessage({ id: 'PayoutDetailsForm.birthdayLabel' });
+      const birthdayLabelMonth = intl.formatMessage({
+        id: 'PayoutDetailsForm.birthdayLabelMonth',
+      });
+      const birthdayLabelYear = intl.formatMessage({ id: 'PayoutDetailsForm.birthdayLabelYear' });
+      
+      const birthdayRequired = validators.required(
+        intl.formatMessage({
+          id: 'PayoutDetailsForm.birthdayRequired',
+        })
+      );
+      const birthdayMinAge = validators.ageAtLeast(
+        intl.formatMessage(
+          {
+            id: 'PayoutDetailsForm.birthdayMinAge',
+          },
+          {
+            minAge: 18,
+          }
+        ),
+        18
+      );
+      
+      const phoneLabel = intl.formatMessage({ id: 'PayoutDetailsForm.personalPhoneLabel' });
+      const phonePlaceholder = intl.formatMessage({ id: 'PayoutDetailsForm.personalPhonePlaceholder' });
+      const phoneNumberForUSRequired = validators.required(
+        intl.formatMessage({ id: 'PayoutDetailsForm.personalPhoneRequired' })
+      );
+      
+      
+      const surnameMessage = intl.formatMessage({ id: 'EditListingDescriptionForm.surname' });
+      const surnamePlaceholderMessage = intl.formatMessage({
+        id: 'EditListingDescriptionForm.surnamePlaceholder',
+      });
+      const surnameRequiredMessage = intl.formatMessage({
+        id: 'EditListingDescriptionForm.surnameRequired',
+      });
 
       const descriptionMessage = intl.formatMessage({
         id: 'EditListingDescriptionForm.description',
@@ -97,7 +138,47 @@ const EditListingDescriptionFormComponent = props => (
             validate={composeValidators(required(titleRequiredMessage), maxLength60Message)}
             autoFocus
           />
-
+            
+          <FieldTextInput
+            id="surname"
+            name="surname"
+            className={css.title}
+            type="text"
+            label={surnameMessage}
+            placeholder={surnamePlaceholderMessage}
+            maxLength={TITLE_MAX_LENGTH}
+            validate={composeValidators(required(titleRequiredMessage), maxLength60Message)}
+            autoFocus
+          />
+          
+          <FieldBirthdayInput
+            id="birthdate"
+            name="birthdate"
+            disabled={disabled}
+            className={css.description}
+            label={birthdayLabel}
+            labelForMonth={birthdayLabelMonth}
+            labelForYear={birthdayLabelYear}
+            format={null}
+            valueFromForm={values.birthDate}
+            validate={validators.composeValidators(birthdayRequired, birthdayMinAge)}
+          />
+            
+          <FieldTextInput
+            id="phonenumber"
+            name="phonenumber"
+            className={css.description}
+            autoComplete="tel-national"
+            disabled={disabled}
+            format={normalizePhoneNumberUS.format}
+            label={phoneLabel}
+            parse={normalizePhoneNumberUS.parse}
+            placeholder={phonePlaceholder}
+            type="text"
+            validate={phoneNumberForUSRequired}
+          />
+            
+          
           <FieldTextInput
             id="description"
             name="description"
@@ -108,12 +189,6 @@ const EditListingDescriptionFormComponent = props => (
             validate={composeValidators(required(descriptionRequiredMessage))}
           />
 
-          <CustomCategorySelectFieldMaybe
-            id="category"
-            name="category"
-            categories={categories}
-            intl={intl}
-          />
 
           <Button
             className={css.submitButton}
