@@ -4,7 +4,7 @@ import classNames from 'classnames';
 
 import config from '../../config';
 import IconLogo from './IconLogo';
-import LogoImage from './saunatime-logo.png';
+import LogoImage from './ysnany.png';
 import css from './Logo.css';
 
 const Logo = props => {
@@ -12,7 +12,7 @@ const Logo = props => {
   const mobileClasses = classNames(css.logoMobile, className);
 
   if (format === 'desktop') {
-    return <img className={className} alt={'YasNanny'} />;
+    return <img className={className} src={LogoImage} alt={'YasNanny'} />;
   }
 
   return <IconLogo className={mobileClasses} {...rest} />;

@@ -44,6 +44,7 @@
     "react-helmet": "^5.2.0",
     "react-intl": "^2.9.0",
     "react-moment-proptypes": "^1.6.0",
+    "react-player": "^1.12.0",
     "react-redux": "^5.1.1",
     "react-router-dom": "^5.0.1",
     "redux": "^4.0.1",

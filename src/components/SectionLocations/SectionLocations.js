@@ -8,9 +8,9 @@ import { NamedLink } from '../../components';
 
 import css from './SectionLocations.css';
 
-import helsinkiImage from './images/location_helsinki.jpg';
-import rovaniemiImage from './images/location_rovaniemi.jpg';
-import rukaImage from './images/location_ruka.jpg';
+import barcelonaImage from './images/Barcelona.jpg';
+import sevillaImage from './images/Sevilla.jpg';
+import madridImage from './images/Madrid.jpg';
 
 class LocationImage extends Component {
   render() {
@@ -52,28 +52,18 @@ const SectionLocations = props => {
       <div className={css.locations}>
         {locationLink(
           'Barcelona',
-          helsinkiImage,
-          '?address=Helsinki%2C%20Finland&bounds=60.2978389%2C25.254484899999966%2C59.9224887%2C24.782875800000056&origin=60.16985569999999%2C24.93837910000002'
+          barcelonaImage,
+          '?address=Barcelona%20Province%2C%20Spain&bounds=42.323301%2C2.839469%2C41.092783%2C1.359622'
         )}
         {locationLink(
           'Madrid (Soon)',
-          rovaniemiImage,
-          '?address=Rovaniemi%2C%20Finland&bounds=67.18452510000002%2C27.32667850000007%2C66.1553745%2C24.736871199999996&origin=66.50394779999999%2C25.729390599999988'
-        )}
-        {locationLink(
-          'San Sebastian (soon)',
-          rukaImage,
-          '?address=Ruka%2C%20Finland&bounds=66.1704578%2C29.14246849999995%2C66.1614402%2C29.110453699999994&origin=66.16594940000002%2C29.12646110000003'
-        )}
-        {locationLink(
-          'Valencia (soon)',
-          rukaImage,
-          '?address=Ruka%2C%20Finland&bounds=66.1704578%2C29.14246849999995%2C66.1614402%2C29.110453699999994&origin=66.16594940000002%2C29.12646110000003'
+          madridImage,
+          '?address=Madrid%2C%20Madrid%2C%20Spain&bounds=40.643313%2C-3.517964%2C40.311994%2C-3.888965'
         )}
         {locationLink(
           'Sevilla (soon)',
-          rukaImage,
-          '?address=Ruka%2C%20Finland&bounds=66.1704578%2C29.14246849999995%2C66.1614402%2C29.110453699999994&origin=66.16594940000002%2C29.12646110000003'
+          sevillaImage,
+          '?address=Sevilla%20la%20Nueva%2C%20Madrid%2C%20Spain&bounds=40.380956%2C-3.998706%2C40.332282%2C-4.076993'
         )}
       </div>
     </div>

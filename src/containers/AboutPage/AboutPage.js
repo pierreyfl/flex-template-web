@@ -12,7 +12,7 @@ import {
 } from '../../components';
 
 import css from './AboutPage.css';
-import image from './about-us-1056.jpg';
+import image from './about-us-1057.jpg';
 
 const AboutPage = () => {
   const { siteTwitterHandle, siteFacebookPage } = config;
@@ -35,53 +35,25 @@ const AboutPage = () => {
         </LayoutWrapperTopbar>
 
         <LayoutWrapperMain className={css.staticPageWrapper}>
-          <h1 className={css.pageTitle}>Experience the unique Finnish home sauna.</h1>
+          <h1 className={css.pageTitle}>About Yasnanny</h1>
           <img className={css.coverImage} src={image} alt="My first ice cream." />
 
           <div className={css.contentWrapper}>
             <div className={css.contentSide}>
-              <p>Did you know that Finland has 3.2 million saunas - almost one sauna per person!</p>
+              <p>Start by searching for a location. Once you find a sitter that matches your needs, simply check the availability, book it, and make a secure payment right away.</p>
             </div>
 
             <div className={css.contentMain}>
               <h2>
-                Most of the Finnish saunas are located at the homes of individuals - indeed, most
-                people in Finland live in an apartment with sauna in it. In addition, lots of people
-                have lakeside summer cottages, which also typically come with a separate sauna
-                building near the waterfront.
+                At YasNanny, we believe that a healthy happy life comes from balancing between your needs and your children ́s needs. Having a childcare that is reliable, trustworthy and always available helps achieving this balance. Just a click away you can hire a nearby sitter that is trusted by other members of the YasNanny community.
               </h2>
 
               <p>
-                To truly experience a Finnish sauna, you need to look beyond the public saunas, and
-                instead visit a real home or cottage sauna. Saunatime makes this possible for
-                everyone. All our saunas are owned by individuals willing to let tourists and other
-                curious visitors to enter their sacred spaces.
+                YasNanny is not just a third party, we do all the work for you by selecting, verifying, and interviewing the best sitters that would fit your needs and meet your expectations. Confirming the booking and the payment is also something we take care of. Now, you can plan that night date or that business trip and YasNanny will take care of your kids.
               </p>
-
-              <h3 className={css.subtitle}>Are you a sauna owner?</h3>
-
+      
               <p>
-                Saunatime offers you a good way to earn some extra cash! If you're not using your
-                sauna every evening, why not rent it to other people while it's free. And even if
-                you are using your sauna every evening (we understand, it's so good), why not invite
-                other people to join you when the sauna is already warm! A shared sauna experience
-                is often a more fulfilling one.
-              </p>
-
-              <h3 id="contact" className={css.subtitle}>
-                Create your own marketplace like Saunatime
-              </h3>
-              <p>
-                Saunatime is brought to you by the good folks at{' '}
-                <ExternalLink href="http://sharetribe.com">Sharetribe</ExternalLink>. Would you like
-                to create your own marketplace platform a bit like Saunatime? Or perhaps a mobile
-                app? With Sharetribe it's really easy. If you have a marketplace idea in mind, do
-                get in touch!
-              </p>
-              <p>
-                You can also checkout our{' '}
-                <ExternalLink href={siteFacebookPage}>Facebook</ExternalLink> and{' '}
-                <ExternalLink href={siteTwitterPage}>Twitter</ExternalLink>.
+                Yasnanny is committed to providing an excellent service to its members. Our aim is to keep on creating a healthy and safe environment for our children. We make sure that the sitters help develop the curiosity of your child though different activities. To make the community even safer, YasNanny includes an insurance to both the children and the sitter during the booked hours. Our hats are off to you‚ the ones who pull off the world's greatest balancing act.
               </p>
             </div>
           </div>

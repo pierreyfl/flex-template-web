@@ -1,19 +1,23 @@
 import React from 'react';
 import { arrayOf, bool, func, shape, string } from 'prop-types';
 import { compose } from 'redux';
-import { Form as FinalForm } from 'react-final-form';
+import { Form as FinalForm, Field } from 'react-final-form';
 import { intlShape, injectIntl, FormattedMessage } from 'react-intl';
 import classNames from 'classnames';
 import * as validators from '../../util/validators';
 import { propTypes } from '../../util/types';
-import { maxLength, required, composeValidators } from '../../util/validators';
-import { Form, Button, FieldTextInput, FieldBirthdayInput} from '../../components';
+import { nonEmptyArray, maxLength, required, composeValidators } from '../../util/validators';
+import { Form, Button, FieldTextInput, FieldBirthdayInput, AddImages, ValidationError} from '../../components';
 import CustomCategorySelectFieldMaybe from './CustomCategorySelectFieldMaybe';
 import * as normalizePhoneNumberUS from './normalizePhoneNumberUS';
 
 import css from './EditListingDescriptionForm.css';
 
 const TITLE_MAX_LENGTH = 60;
+
+const ACCEPT_IMAGES = 'image/*';
+
+
 
 const EditListingDescriptionFormComponent = props => (
   <FinalForm
@@ -24,15 +28,32 @@ const EditListingDescriptionFormComponent = props => (
         className,
         disabled,
         values,
+        images,
+        onRemoveImage,
         handleSubmit,
+        imageUploadRequested,
+        form,
         intl,
         invalid,
+        onImageUploadHandler,
         pristine,
         saveActionMsg,
         updated,
         updateInProgress,
         fetchErrors,
       } = fieldRenderProps;
+      
+      const imageRequiredMessage = intl.formatMessage({
+        id: 'EditListingPhotosForm.imageRequired',
+      });
+      
+      const chooseImageText = (
+        <span className={css.chooseImageText}>
+          <span className={css.chooseImage}>
+            <FormattedMessage id="EditListingDescriptionForm.chooseImage" />
+          </span>
+        </span>
+      );
 
       const titleMessage = intl.formatMessage({ id: 'EditListingDescriptionForm.title' });
       const titlePlaceholderMessage = intl.formatMessage({
@@ -151,6 +172,62 @@ const EditListingDescriptionFormComponent = props => (
             autoFocus
           />
           
+          <AddImages
+            className={css.imagesField}
+            images={images}
+            thumbnailClassName={css.thumbnail}
+            savedImageAltText={intl.formatMessage({
+              id: 'EditListingDescriptionForm.savedImageAltText',
+            })}
+            onRemoveImage={onRemoveImage}
+          >
+            <Field
+              id="addImage"
+              name="addImage"
+              accept={ACCEPT_IMAGES}
+              form={null}
+              label={chooseImageText}
+              type="file"
+              disabled={imageUploadRequested}
+            >
+              {fieldprops => {
+                const { accept, input, label, type, disabled } = fieldprops;
+                const { name } = input;
+                const onChange = e => {
+                  const file = e.target.files[0];
+                  form.change(`addImage`, file);
+                  form.blur(`addImage`);
+                  onImageUploadHandler(file);
+                };
+                const inputProps = { accept, id: name, name, onChange, type };
+                return (
+                  <div className={css.addImageWrapper}>
+                    <div className={css.aspectRatioWrapper}>
+                      {disabled ? null : (
+                        <input {...inputProps} className={css.addImageInput} />
+                      )}
+                      <label htmlFor={name} className={css.addImage}>
+                      {label}
+                      </label>
+                    </div>
+                  </div>
+                );
+              }}
+            </Field>
+            <Field
+              component={props => {
+                const { input, type, meta } = props;
+                return (
+                  <div className={css.imageRequiredWrapper}>
+                    <input {...input} type={type} />
+                    <ValidationError fieldMeta={meta} />
+                  </div>
+                );
+              }}
+              name="images"
+              type="hidden"
+            />
+          </AddImages>
           <FieldBirthdayInput
             id="birthdate"
             name="birthdate"
